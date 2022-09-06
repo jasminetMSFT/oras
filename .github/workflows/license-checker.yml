@@ -11,20 +11,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: LicenseHeaderChecks
+name: License Checker
 
 on:
-  pull_request:
-    branches: main
   push:
+    branches: main
+  pull_request:
     branches: main
 
 jobs:
-  build-license-eye:
-    name: Check license headers
+  check-license:
     runs-on: ubuntu-latest
     steps:
-      - uses: apache/skywalking-eyes@v0.4.0
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: setup go environment
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.19.0'
+      - name: Check License Header
+        uses: apache/skywalking-eyes@v0.4.0
         with:
           mode: check
+          log: info
           config: .github/licenserc.yml
