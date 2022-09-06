@@ -11,20 +11,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: license-header-check
+name: LicenseHeaderChecks
 
 on:
   pull_request:
+    branches: main
   push:
-    branches:
-      - main
+    branches: main
 
 jobs:
   build-license-eye:
+    name: Check license headers
     runs-on: ubuntu-latest
     steps:
-      - name: Check License Header
-        uses: apache/skywalking-eyes@v0.4.0
+      - uses: apache/skywalking-eyes@v0.4.0
         with:
+          mode: check
           config: .licenserc.yaml
-
