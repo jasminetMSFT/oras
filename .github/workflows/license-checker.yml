@@ -29,11 +29,6 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.19.0'
-      - name: Check License Header
-        uses: apache/skywalking-eyes/header@v0.4.0
-        with:
-          mode: check
-          config: .github/licenserc.yml
       - name: Fix License Header
         uses: apache/skywalking-eyes/header@v0.4.0
         with:
@@ -50,5 +45,4 @@ jobs:
       - name: Check Dependencies License
         uses: apache/skywalking-eyes/dependency@v0.4.0
         with:
-          mode: check
           config: .github/licenserc.yml
