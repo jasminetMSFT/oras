@@ -26,7 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          token: ${{ secrets.CHECKOUT_TOKEN }}
       - name: setup go environment
         uses: actions/setup-go@v3
         with:
@@ -38,6 +38,8 @@ jobs:
           config: .github/licenserc.yml
       - name: Apply Changes
         uses: EndBug/add-and-commit@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           author_name: License Bot
           author_email: license_bot@github.com
